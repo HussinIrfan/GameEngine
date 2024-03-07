@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slCamera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slKeyListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slMouseListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/csc133/Main.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/csc133/spot.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2bnsAs8muKIzHTCMJpBG8WhzFBI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Assignment [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "DEV",
+    "jdk.selected.JAVA_MODULE": "corretto-19",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hussi/Desktop/Assignment5/Assignment",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hussi\Desktop\myAssignment2\Assignment\src\main\java" />
+      <recent name="C:\Users\hussi\Desktop\myAssignment2\Assignment\src" />
+      <recent name="C:\Users\hussi\Desktop\myAssignment2\Assignment\src\main\java\csc133" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="csc133.Main" />
+      <module name="Assignment.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="csc133.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="" />
+      <created>1706862036585</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706862036585</updated>
+      <workItem from="1706862037642" duration="7885000" />
+      <workItem from="1706871859813" duration="856000" />
+      <workItem from="1706906904622" duration="826000" />
+      <workItem from="1706914250117" duration="9201000" />
+      <workItem from="1706937806834" duration="556000" />
+      <workItem from="1706938629878" duration="463000" />
+      <workItem from="1707041698058" duration="141000" />
+      <workItem from="1707095763285" duration="1599000" />
+      <workItem from="1707097857955" duration="273000" />
+      <workItem from="1707177348993" duration="7087000" />
+      <workItem from="1707363066813" duration="4151000" />
+      <workItem from="1707367572321" duration="9000" />
+      <workItem from="1707367591361" duration="2146000" />
+      <workItem from="1707426237495" duration="252000" />
+      <workItem from="1707427238350" duration="687000" />
+      <workItem from="1707535148963" duration="3856000" />
+      <workItem from="1707540275145" duration="1317000" />
+      <workItem from="1707645733726" duration="320000" />
+      <workItem from="1707694195873" duration="607000" />
+      <workItem from="1707723227109" duration="3009000" />
+      <workItem from="1707767876656" duration="3175000" />
+      <workItem from="1707771308502" duration="290000" />
+      <workItem from="1707782548737" duration="645000" />
+      <workItem from="1707891577168" duration="9000" />
+      <workItem from="1708391118867" duration="600000" />
+      <workItem from="1708399462835" duration="20000" />
+      <workItem from="1709434115183" duration="371000" />
+      <workItem from="1709434500387" duration="559000" />
+      <workItem from="1709435073290" duration="1236000" />
+      <workItem from="1709437978781" duration="289000" />
+      <workItem from="1709521025779" duration="419000" />
+      <workItem from="1709521465914" duration="2633000" />
+      <workItem from="1709673598823" duration="266000" />
+      <workItem from="1709674276179" duration="809000" />
+      <workItem from="1709778626466" duration="1084000" />
+      <workItem from="1709780057114" duration="1125000" />
+      <workItem from="1709782533932" duration="14349000" />
+      <workItem from="1709797047134" duration="118000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
