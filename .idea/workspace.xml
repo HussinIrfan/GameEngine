@@ -5,26 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slCamera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slKeyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main-1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/createIndices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/createVertices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/slCamera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/slWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slKeyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slMouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slMouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +161,7 @@
       <workItem from="1709778626466" duration="1084000" />
       <workItem from="1709780057114" duration="1125000" />
       <workItem from="1709782533932" duration="14349000" />
-      <workItem from="1709797047134" duration="118000" />
+      <workItem from="1709797047134" duration="356000" />
     </task>
     <servers />
   </component>

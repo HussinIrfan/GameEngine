@@ -1,7 +1,11 @@
-package CSC133;
+package csc133;
 
+import SlRenderer.slSingleBatchRenderer;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
-}
+        slSingleBatchRenderer myRenderer = new slSingleBatchRenderer();
+        myRenderer.render();
+
+    } // public static void main(String[] args)
+
+}  //  public class Main
