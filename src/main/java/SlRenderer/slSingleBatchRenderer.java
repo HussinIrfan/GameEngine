@@ -1,11 +1,7 @@
 package SlRenderer;
 import java.io.BufferedReader;
-import java.util.Random;
-import csc133.slCamera;
-import csc133.slWindow;
-import csc133.spot;
+
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
 
@@ -21,8 +17,7 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 import static csc133.spot.*;
-import static org.lwjgl.glfw.GLFW.*;
-import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.IOException;
 public class slSingleBatchRenderer {
@@ -34,9 +29,6 @@ public class slSingleBatchRenderer {
     private static Matrix4f viewProjMatrix = new Matrix4f();
     private static FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private static int vpMatLocation = 0, renderColorLocation = 0;
-    private static final float POLY_OFFSET = 20.0f, POLY_PADDING = 10.0f, sq_length = 30;
-    private static final Vector3f VEC_RC =
-            new Vector3f(0.0f, 0.498f, 0.0153f); // "vector render color" for square
     private static slGoLBoardLive my_board;
     private static boolean[][] boardArray;
     private static boolean delayOn = false;
@@ -221,11 +213,11 @@ public class slSingleBatchRenderer {
         int ibo = glGenBuffers();
 
         my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS);
-        boardArray = my_board.getLiveCellArray();
+        boardArray = my_board.getLiveCellArray(); //STORES A COPY OF MY_BOARD
 
         long start_time = System.currentTimeMillis();
         int numSquaresIndex = 0;
-        float[][] squareColors = new float[NUM_POLY_ROWS * NUM_POLY_COLS][3];
+        float[][] squareColors = new float[NUM_POLY_ROWS * NUM_POLY_COLS][3]; //STORES RGB COLORS FOR EACH CELL
 
 
         while (!glfwWindowShouldClose(glfw_window)) {

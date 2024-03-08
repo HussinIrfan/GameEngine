@@ -1,8 +1,8 @@
 package csc133;
 
 public class spot {
-    //Width for 18 sqrs to be centered: sqrLength x 18 + (padding x 17) + (offset x 2)
-    public static int WIN_WIDTH = 750, WIN_HEIGHT = 830;
+    public static final float POLY_OFFSET = 20.0f, POLY_PADDING = 10.0f, sq_length = 30;
     public static final int NUM_POLY_ROWS = 20, NUM_POLY_COLS = 18;
-
+    public static int WIN_WIDTH =(int)(2 * POLY_OFFSET + (NUM_POLY_COLS-1) * POLY_PADDING + NUM_POLY_COLS * sq_length),
+                      WIN_HEIGHT = (int)(2 * POLY_OFFSET + (NUM_POLY_ROWS-1) * POLY_PADDING + NUM_POLY_ROWS * sq_length);
 }

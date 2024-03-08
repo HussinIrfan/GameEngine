@@ -1,4 +1,4 @@
-package csc133;
+package SlRenderer;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
