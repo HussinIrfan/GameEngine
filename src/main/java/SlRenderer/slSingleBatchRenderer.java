@@ -1,4 +1,5 @@
 package SlRenderer;
+import java.io.BufferedReader;
 import java.util.Random;
 import csc133.slCamera;
 import csc133.slWindow;
@@ -7,6 +8,8 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
+
+import javax.swing.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import static org.lwjgl.glfw.GLFW.*;
@@ -19,6 +22,9 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 import static csc133.spot.*;
 import static org.lwjgl.glfw.GLFW.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 public class slSingleBatchRenderer {
     private static long glfw_window = 0;
     private static final int OGL_MATRIX_SIZE = 16;
@@ -28,13 +34,15 @@ public class slSingleBatchRenderer {
     private static Matrix4f viewProjMatrix = new Matrix4f();
     private static FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private static int vpMatLocation = 0, renderColorLocation = 0;
-
-    private static int NUM_POLY_ROWS = 20, NUM_POLY_COLS = 18;
     private static final float POLY_OFFSET = 20.0f, POLY_PADDING = 10.0f, sq_length = 30;
     private static final Vector3f VEC_RC =
             new Vector3f(0.0f, 0.498f, 0.0153f); // "vector render color" for square
     private static slGoLBoardLive my_board;
     private static boolean[][] boardArray;
+    private static boolean delayOn = false;
+    private static boolean keepRunning = true;
+    private static boolean toggleFR = false;
+    private static boolean exitProgram = false;
     public static void render() {
         glfw_window = slWindow.get_oglwindow(WIN_WIDTH, WIN_HEIGHT);
         glfwSetKeyCallback(glfw_window, slKeyListener::keyCallback);
@@ -79,7 +87,7 @@ public class slSingleBatchRenderer {
         glShaderSource(fs,
                 "uniform vec3 renderColorLocation;" +
                         "void main(void) {" +
-                        " gl_FragColor = vec4(renderColorLocation, 1.0);" +
+                        "gl_FragColor = vec4(renderColorLocation, 1.0);" +
                         "}");
         glCompileShader(fs);
         glAttachShader(shader_program, fs);
@@ -141,6 +149,62 @@ public class slSingleBatchRenderer {
         }
         return indx_array;
     }  //  public int[] getIndexArrayForSquares(...)
+    private static void userKeyInputs(){
+        if(slKeyListener.isKeyPressed(GLFW_KEY_D))
+        {
+            delayOn = !delayOn;
+            slKeyListener.resetKeypressEvent(GLFW_KEY_D);
+            System.out.println("KeyPressed!");
+        }
+        if(slKeyListener.isKeyPressed(GLFW_KEY_H))
+        {
+            keepRunning = false;
+            slKeyListener.resetKeypressEvent(GLFW_KEY_H);
+            System.out.println("KeyPressed!");
+        }
+        if(slKeyListener.isKeyPressed(GLFW_KEY_SPACE))
+        {
+            keepRunning = true;
+            slKeyListener.resetKeypressEvent(GLFW_KEY_SPACE);
+            System.out.println("KeyPressed!");
+        }
+        if(slKeyListener.isKeyPressed(GLFW_KEY_F))
+        {
+            toggleFR = !toggleFR;
+            slKeyListener.resetKeypressEvent(GLFW_KEY_F);
+            System.out.println("KeyPressed!");
+        }
+        if(slKeyListener.isKeyPressed(GLFW_KEY_R))
+        {
+            my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS);
+            boardArray = my_board.getLiveCellArray();
+            slKeyListener.resetKeypressEvent(GLFW_KEY_R);
+            System.out.println("KeyPressed!");
+        }
+        if(slKeyListener.isKeyPressed(GLFW_KEY_ESCAPE))
+        {
+            glfwSetWindowShouldClose(glfw_window, true);
+            slKeyListener.resetKeypressEvent(GLFW_KEY_ESCAPE);
+        }
+        //JFileChooser fileChooser = new JFileChooser();
+        if(slKeyListener.isKeyPressed(GLFW_KEY_L))
+        {
+            String myF = JOptionPane.showInputDialog("Enter FileName");
+
+            try(BufferedReader reader = new BufferedReader(new FileReader(myF))){
+                String line = reader.readLine();
+                System.out.println(line);
+                line = reader.readLine();
+                System.out.println(line);
+
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            System.out.println(myF);
+            slKeyListener.resetKeypressEvent(GLFW_KEY_L);
+
+        }
+    }
 
     private static void renderObjects() {
         int verts_per_square = 4;
@@ -163,9 +227,7 @@ public class slSingleBatchRenderer {
         int numSquaresIndex = 0;
         float[][] squareColors = new float[NUM_POLY_ROWS * NUM_POLY_COLS][3];
 
-        boolean delayOn = false;
-        boolean keepRunning = true;
-        boolean toggleFR = false;
+
         while (!glfwWindowShouldClose(glfw_window)) {
 
             //Get framerate:
@@ -178,37 +240,7 @@ public class slSingleBatchRenderer {
 
 
             glfwPollEvents();
-            if(slKeyListener.isKeyPressed(GLFW_KEY_D))
-            {
-                delayOn = !delayOn;
-                slKeyListener.resetKeypressEvent(GLFW_KEY_D);
-                System.out.println("KeyPressed!!!");
-            }
-            if(slKeyListener.isKeyPressed(GLFW_KEY_H))
-            {
-                keepRunning = false;
-                slKeyListener.resetKeypressEvent(GLFW_KEY_H);
-                System.out.println("KeyPressed!!!");
-            }
-            if(slKeyListener.isKeyPressed(GLFW_KEY_SPACE))
-            {
-                keepRunning = true;
-                slKeyListener.resetKeypressEvent(GLFW_KEY_SPACE);
-                System.out.println("KeyPressed!!!");
-            }
-            if(slKeyListener.isKeyPressed(GLFW_KEY_F))
-            {
-                toggleFR = !toggleFR;
-                slKeyListener.resetKeypressEvent(GLFW_KEY_F);
-                System.out.println("KeyPressed!!!");
-            }
-            if(slKeyListener.isKeyPressed(GLFW_KEY_R))
-            {
-                my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS);
-                boardArray = my_board.getLiveCellArray();
-                slKeyListener.resetKeypressEvent(GLFW_KEY_R);
-                System.out.println("KeyPressed!!!");
-            }
+            userKeyInputs(); //handle all hotkeys
 
             if(keepRunning) {
                 //Set color for each square based on GoLBoard:
@@ -230,8 +262,6 @@ public class slSingleBatchRenderer {
                 numSquaresIndex = 0;
                 my_board.updateNextCellArray();
                 boardArray = my_board.getLiveCellArray();
-                //System.out.println("Board:");
-                //my_board.printGoLBoard();
 
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -266,7 +296,7 @@ public class slSingleBatchRenderer {
                     glUniform3f(renderColorLocation, squareColors[indexSquare][0], squareColors[indexSquare][1], squareColors[indexSquare][2]);
                     indexSquare++;
 
-                    long first_index_ptr = i * Integer.BYTES;
+                    long first_index_ptr = i * 4;
                     glDrawElements(GL_TRIANGLES, indices_per_square, GL_UNSIGNED_INT, first_index_ptr);
                 }
 
