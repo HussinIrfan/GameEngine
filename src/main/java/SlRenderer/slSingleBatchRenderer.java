@@ -1,10 +1,9 @@
 package SlRenderer;
-import java.io.BufferedReader;
+import java.io.*;
 
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
-
 import javax.swing.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -18,8 +17,6 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 import static csc133.spot.*;
 
-import java.io.FileReader;
-import java.io.IOException;
 public class slSingleBatchRenderer {
     private static long glfw_window = 0;
     private static final int OGL_MATRIX_SIZE = 16;
@@ -31,10 +28,10 @@ public class slSingleBatchRenderer {
     private static int vpMatLocation = 0, renderColorLocation = 0;
     private static slGoLBoardLive my_board;
     private static boolean[][] boardArray;
-    private static boolean delayOn = false;
+    private static boolean toggleDelay = false;
     private static boolean keepRunning = true;
     private static boolean toggleFR = false;
-    private static boolean exitProgram = false;
+
     public static void render() {
         glfw_window = slWindow.get_oglwindow(WIN_WIDTH, WIN_HEIGHT);
         glfwSetKeyCallback(glfw_window, slKeyListener::keyCallback);
@@ -144,58 +141,86 @@ public class slSingleBatchRenderer {
     private static void userKeyInputs(){
         if(slKeyListener.isKeyPressed(GLFW_KEY_D))
         {
-            delayOn = !delayOn;
+            toggleDelay = !toggleDelay;
             slKeyListener.resetKeypressEvent(GLFW_KEY_D);
             System.out.println("KeyPressed!");
-        }
+        } //D Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_H))
         {
             keepRunning = false;
             slKeyListener.resetKeypressEvent(GLFW_KEY_H);
             System.out.println("KeyPressed!");
-        }
+        } //H Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_SPACE))
         {
             keepRunning = true;
             slKeyListener.resetKeypressEvent(GLFW_KEY_SPACE);
             System.out.println("KeyPressed!");
-        }
+        } //SPACE Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_F))
         {
             toggleFR = !toggleFR;
             slKeyListener.resetKeypressEvent(GLFW_KEY_F);
             System.out.println("KeyPressed!");
-        }
+        } //F Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_R))
         {
             my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS);
             boardArray = my_board.getLiveCellArray();
             slKeyListener.resetKeypressEvent(GLFW_KEY_R);
             System.out.println("KeyPressed!");
-        }
+        }//R Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_ESCAPE))
         {
             glfwSetWindowShouldClose(glfw_window, true);
             slKeyListener.resetKeypressEvent(GLFW_KEY_ESCAPE);
-        }
-        //JFileChooser fileChooser = new JFileChooser();
+        } //ESC Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_L))
         {
             String myF = JOptionPane.showInputDialog("Enter FileName");
+            String directory = System.getProperty("user.dir");
+            String path = directory + "/" + myF;
 
-            try(BufferedReader reader = new BufferedReader(new FileReader(myF))){
-                String line = reader.readLine();
-                System.out.println(line);
-                line = reader.readLine();
-                System.out.println(line);
-
+            try(BufferedReader reader = new BufferedReader(new FileReader(path))){
+                my_board.loadFileCellArray(reader);
             }catch(IOException e){
                 e.printStackTrace();
             }
-            System.out.println(myF);
-            slKeyListener.resetKeypressEvent(GLFW_KEY_L);
 
-        }
+            slKeyListener.resetKeypressEvent(GLFW_KEY_L);
+        } //L Key
+        if(slKeyListener.isKeyPressed(GLFW_KEY_S))
+        {
+
+            String mySaveFile = JOptionPane.showInputDialog("Enter name for save file");
+            if(!mySaveFile.endsWith(".ca")){
+                mySaveFile = mySaveFile + ".ca";
+            }
+            System.out.println(mySaveFile);
+            StringBuilder my_string = new StringBuilder();
+
+            my_string.append(NUM_POLY_ROWS + "\n");
+            my_string.append(NUM_POLY_COLS + "\n");
+            for(int i = 0; i < NUM_POLY_ROWS; i++)
+            {
+                for(int j = 0; j < NUM_POLY_COLS; j++)
+                {
+                    if(boardArray[i][j])
+                        my_string.append(1);
+                    else
+                        my_string.append(0);
+                    my_string.append(" ");
+                }
+                my_string.append("\n");
+            }
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(mySaveFile))){
+                writer.write(my_string.toString());
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+
+            slKeyListener.resetKeypressEvent(GLFW_KEY_S);
+        } //S Key
     }
 
     private static void renderObjects() {
@@ -212,13 +237,11 @@ public class slSingleBatchRenderer {
         int vbo = glGenBuffers();
         int ibo = glGenBuffers();
 
-        my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS);
-        boardArray = my_board.getLiveCellArray(); //STORES A COPY OF MY_BOARD
+        my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS); //Create New Board
+        boardArray = my_board.getLiveCellArray(); //2-D Array Points to the liveCellArray inside my_board
+        boolean[] boardMapped = new boolean[NUM_POLY_ROWS * NUM_POLY_COLS]; //1-D copy of boardArray, used to loop through color
 
         long start_time = System.currentTimeMillis();
-        int numSquaresIndex = 0;
-        float[][] squareColors = new float[NUM_POLY_ROWS * NUM_POLY_COLS][3]; //STORES RGB COLORS FOR EACH CELL
-
 
         while (!glfwWindowShouldClose(glfw_window)) {
 
@@ -227,52 +250,49 @@ public class slSingleBatchRenderer {
             double delta_time = (cur_time - start_time);
             double framerate = 1 / (delta_time / 1000);
             start_time = cur_time;
+
+            //Toggle FrameRate Display:
             if(toggleFR)
                 System.out.println("FrameRate:" + (int)framerate);
 
 
             glfwPollEvents();
-            userKeyInputs(); //handle all hotkeys
+            userKeyInputs(); //Function handles all hotkeys
 
+            //Toggle Halt Key:
             if(keepRunning) {
-                //Set color for each square based on GoLBoard:
+
+                //Map 2-D boardArray to 1-D Array:
+                int k = 0;
                 for (int i = 0; i < NUM_POLY_ROWS; i++) {
                     for (int j = 0; j < NUM_POLY_COLS; j++) {
                         if (boardArray[i][j]) {
-                            squareColors[numSquaresIndex][0] = 0.0f; // Red
-                            squareColors[numSquaresIndex][1] = 1.0f; // Green
-                            squareColors[numSquaresIndex][2] = 0.0f; // Blue
+                            boardMapped[k] = true;
                         } else {
-                            squareColors[numSquaresIndex][0] = 1.0f; // Red
-                            squareColors[numSquaresIndex][1] = 0.0f; // Green
-                            squareColors[numSquaresIndex][2] = 0.0f; // Blue
+                            boardMapped[k] = false;
                         }
-                        numSquaresIndex++;
+                        k++;
                     }
                 }
-                //Reset index each frame and update board
-                numSquaresIndex = 0;
-                my_board.updateNextCellArray();
-                boardArray = my_board.getLiveCellArray();
 
+                //Update my_board, will also update boardArray:
+                my_board.updateNextCellArray();
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
                 glBindBuffer(GL_ARRAY_BUFFER, vbo);
                 glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
                         createFloatBuffer(vertices.length).
                         put(vertices).flip(), GL_STATIC_DRAW);
-
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, (IntBuffer) BufferUtils.
                         createIntBuffer(indices.length).
                         put(indices).flip(), GL_STATIC_DRAW);
-
                 int coords_per_vertex = 2, vertex_stride = 0;
                 long first_vertex_ptr = 0L;
                 glVertexPointer(coords_per_vertex, GL_FLOAT,
                         vertex_stride, first_vertex_ptr);
+
 
                 slCamera my_cam = new slCamera();
                 my_cam.setProjectionOrtho();
@@ -282,19 +302,24 @@ public class slSingleBatchRenderer {
                         viewProjMatrix.get(myFloatBuffer));
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-                // Loop sets color for each square and draws it:
-                int indexSquare = 0;
-                for (int i = 0; i < total_draw_indices; i += indices_per_square) {
-                    glUniform3f(renderColorLocation, squareColors[indexSquare][0], squareColors[indexSquare][1], squareColors[indexSquare][2]);
-                    indexSquare++;
-
-                    long first_index_ptr = i * 4;
-                    glDrawElements(GL_TRIANGLES, indices_per_square, GL_UNSIGNED_INT, first_index_ptr);
-                }
+                long ibps = 24;
+                int dvps = 6;
+                int i = 0;
+                //Draw Each Square Either Red Or Green:
+                for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci) {
+                    if (boardMapped[i]) {
+                        glUniform3f(renderColorLocation, liveColor.x, liveColor.y, liveColor.z);
+                    } else {
+                        glUniform3f(renderColorLocation, deadColor.x, deadColor.y, deadColor.z);
+                    }
+                    glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
+                    i++;
+                }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
 
                 glfwSwapBuffers(glfw_window);
             }
-            if (delayOn) {
+            //Toggle Delay Key:
+            if (toggleDelay) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

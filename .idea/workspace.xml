@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Finished ESC Key">
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slCamera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slWindow.java" afterDir="false" />
+    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Moved Files, Fixed Screen Centering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slCamera.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slWindow.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +165,9 @@
       <workItem from="1709797047134" duration="356000" />
       <workItem from="1709797494422" duration="144000" />
       <workItem from="1709855336154" duration="7601000" />
-      <workItem from="1709874220162" duration="1440000" />
+      <workItem from="1709874220162" duration="1970000" />
+      <workItem from="1709880742909" duration="5298000" />
+      <workItem from="1709935378870" duration="5444000" />
     </task>
     <task id="LOCAL-00001" summary="updating">
       <option name="closed" value="true" />
@@ -185,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709874408281</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Moved Files, Fixed Screen Centering">
+      <option name="closed" value="true" />
+      <created>1709875821935</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709875821935</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +202,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updating" />
     <MESSAGE value="Finished ESC Key" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished ESC Key" />
+    <MESSAGE value="Moved Files, Fixed Screen Centering" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved Files, Fixed Screen Centering" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="my_board.liveCellArray[0]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

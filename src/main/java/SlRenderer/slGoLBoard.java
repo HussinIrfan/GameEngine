@@ -1,5 +1,7 @@
 package SlRenderer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Random;
 public abstract class slGoLBoard {
     protected int NUM_ROWS;
@@ -103,9 +105,9 @@ public abstract class slGoLBoard {
         }  //  for (bool[] my_row : my_array)
     }  //  void printGoLBoard()
 
-    // UNCOMMENT NEXT TWO LINES AND CHANGE THE ACCESS LEVELS OF THE FUNCTIONS:
     protected abstract int countLiveTwoDegreeNeighbors(int row, int col);
     protected abstract int updateNextCellArray();
+    protected abstract void loadFileCellArray(BufferedReader reader) throws IOException;
 
 }  //  public class slGoLBoard
 

@@ -1,4 +1,8 @@
 package SlRenderer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class slGoLBoardLive extends slGoLBoard{
     public slGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
@@ -75,5 +79,28 @@ public class slGoLBoardLive extends slGoLBoard{
 
         return retVal;
     }  //  int updateNextCellArray()
+    @Override public void loadFileCellArray(BufferedReader reader) throws IOException {
+        String line;
+        String updatedLine;
+
+        line = reader.readLine();
+        int mRow = Integer.parseInt(line); //Save first line: Row
+        line = reader.readLine();
+        int mCol = Integer.parseInt(line); //Save second line: Col
+
+        int curRow = 0; //index for row
+        while((line = reader.readLine()) != null){ //loop through reader line by line until null
+            updatedLine = line.replaceAll("\\s", ""); //Remove whitespaces from current line
+            for(int curCol = 0; curCol < mCol; curCol++) //Loop through each col for a specific row, setting liveCellArray to Dead or Alive based on char read
+            {
+                if(updatedLine.charAt(curCol) == '1')
+                    setCellAlive(curRow, curCol);
+                else
+                    setCellDead(curRow, curCol);
+            }
+            curRow++;
+        }
+
+    }
 }
 
