@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Moved Files, Fixed Screen Centering">
+    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Load and Save File Working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +164,7 @@
       <workItem from="1709855336154" duration="7601000" />
       <workItem from="1709874220162" duration="1970000" />
       <workItem from="1709880742909" duration="5298000" />
-      <workItem from="1709935378870" duration="5444000" />
+      <workItem from="1709935378870" duration="8043000" />
     </task>
     <task id="LOCAL-00001" summary="updating">
       <option name="closed" value="true" />
@@ -193,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709875821935</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Load and Save File Working">
+      <option name="closed" value="true" />
+      <created>1709941033870</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709941033871</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +208,8 @@
     <MESSAGE value="updating" />
     <MESSAGE value="Finished ESC Key" />
     <MESSAGE value="Moved Files, Fixed Screen Centering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved Files, Fixed Screen Centering" />
+    <MESSAGE value="Load and Save File Working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Load and Save File Working" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

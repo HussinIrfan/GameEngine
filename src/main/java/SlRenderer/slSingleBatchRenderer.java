@@ -177,12 +177,12 @@ public class slSingleBatchRenderer {
         } //ESC Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_L))
         {
-            String myF = JOptionPane.showInputDialog("Enter FileName");
-            String directory = System.getProperty("user.dir");
-            String path = directory + "/" + myF;
+            String myF = JOptionPane.showInputDialog("Enter FileName"); //Open Box
+            String directory = System.getProperty("user.dir"); //Get Directory for Files
+            String path = directory + "/" + myF; //Combine Directory and UserInput into one String
 
-            try(BufferedReader reader = new BufferedReader(new FileReader(path))){
-                my_board.loadFileCellArray(reader);
+            try(BufferedReader reader = new BufferedReader(new FileReader(path))){ //Create BufferedReader for loaded file
+                my_board.loadFileCellArray(reader); //Reads the loaded file and updates liveCellArray to match loaded file
             }catch(IOException e){
                 e.printStackTrace();
             }
@@ -192,16 +192,15 @@ public class slSingleBatchRenderer {
         if(slKeyListener.isKeyPressed(GLFW_KEY_S))
         {
 
-            String mySaveFile = JOptionPane.showInputDialog("Enter name for save file");
-            if(!mySaveFile.endsWith(".ca")){
+            String mySaveFile = JOptionPane.showInputDialog("Enter name for save file"); //Open Box
+            if(!mySaveFile.endsWith(".ca")){ //Ensure .ca is at end of User Inputted File Name
                 mySaveFile = mySaveFile + ".ca";
             }
-            System.out.println(mySaveFile);
-            StringBuilder my_string = new StringBuilder();
+            StringBuilder my_string = new StringBuilder(); //Create Mutable String
 
-            my_string.append(NUM_POLY_ROWS + "\n");
-            my_string.append(NUM_POLY_COLS + "\n");
-            for(int i = 0; i < NUM_POLY_ROWS; i++)
+            my_string.append(NUM_POLY_ROWS + "\n"); //First Row is Num_Rows
+            my_string.append(NUM_POLY_COLS + "\n"); //Second Row is Num_Cols
+            for(int i = 0; i < NUM_POLY_ROWS; i++) //Loop through boardArray and append string with either 1 or 0
             {
                 for(int j = 0; j < NUM_POLY_COLS; j++)
                 {
@@ -209,11 +208,11 @@ public class slSingleBatchRenderer {
                         my_string.append(1);
                     else
                         my_string.append(0);
-                    my_string.append(" ");
+                    my_string.append(" "); //Add whitespace after each char
                 }
-                my_string.append("\n");
+                my_string.append("\n"); //NewLine after each row is finished
             }
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(mySaveFile))){
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(mySaveFile))){ //take my_string and write it to the file
                 writer.write(my_string.toString());
             } catch(IOException e){
                 e.printStackTrace();
