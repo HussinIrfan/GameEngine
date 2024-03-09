@@ -208,7 +208,7 @@ public class slSingleBatchRenderer {
                         my_string.append(1);
                     else
                         my_string.append(0);
-                    my_string.append(" "); //Add whitespace after each char
+                    //my_string.append(" "); //Add whitespace after each char
                 }
                 my_string.append("\n"); //NewLine after each row is finished
             }
@@ -303,16 +303,15 @@ public class slSingleBatchRenderer {
 
                 long ibps = 24;
                 int dvps = 6;
-                int i = 0;
+
                 //Draw Each Square Either Red Or Green:
                 for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci) {
-                    if (boardMapped[i]) {
+                    if (boardMapped[ci]) {
                         glUniform3f(renderColorLocation, liveColor.x, liveColor.y, liveColor.z);
                     } else {
                         glUniform3f(renderColorLocation, deadColor.x, deadColor.y, deadColor.z);
                     }
                     glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
-                    i++;
                 }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
 
                 glfwSwapBuffers(glfw_window);
