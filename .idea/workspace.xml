@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Load and Save File Working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
-    </list>
+    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Load and Save File Working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +162,7 @@
       <workItem from="1709874220162" duration="1970000" />
       <workItem from="1709880742909" duration="5298000" />
       <workItem from="1709935378870" duration="9682000" />
-      <workItem from="1709952204349" duration="5205000" />
+      <workItem from="1709952204349" duration="5644000" />
     </task>
     <task id="LOCAL-00001" summary="updating">
       <option name="closed" value="true" />
@@ -215,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709943764535</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Load and Save File Working">
+      <option name="closed" value="true" />
+      <created>1709957855591</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709957855591</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
