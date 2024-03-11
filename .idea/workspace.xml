@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Load and Save File Working" />
+    <list default="true" id="2c71ef3c-db3a-4625-8f4f-0432950ec7fd" name="Changes" comment="Load and Save File Working">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/slSingleBatchRenderer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,6 +166,9 @@
       <workItem from="1709880742909" duration="5298000" />
       <workItem from="1709935378870" duration="9682000" />
       <workItem from="1709952204349" duration="5644000" />
+      <workItem from="1710027274872" duration="661000" />
+      <workItem from="1710055986817" duration="171000" />
+      <workItem from="1710109756751" duration="16887000" />
     </task>
     <task id="LOCAL-00001" summary="updating">
       <option name="closed" value="true" />

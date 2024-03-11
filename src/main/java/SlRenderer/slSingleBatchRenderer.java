@@ -28,9 +28,11 @@ public class slSingleBatchRenderer {
     private static int vpMatLocation = 0, renderColorLocation = 0;
     private static slGoLBoardLive my_board;
     private static boolean[][] boardArray;
+    private static boolean[] boardMapped = new boolean[NUM_POLY_ROWS * NUM_POLY_COLS]; //1-D copy of boardArray, used to loop through color
     private static boolean toggleDelay = false;
     private static boolean keepRunning = true;
     private static boolean toggleFR = false;
+    private static boolean toggleLoad = false;
 
     public static void render() {
         glfw_window = slWindow.get_oglwindow(WIN_WIDTH, WIN_HEIGHT);
@@ -177,49 +179,89 @@ public class slSingleBatchRenderer {
         } //ESC Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_L))
         {
+            toggleLoad = true; //Ensures board is loaded engine is paused so user can see loaded board
+            System.out.println("Board Loaded! Press SPACE to resume");
             String myF = JOptionPane.showInputDialog("Enter FileName"); //Open Box
-            String directory = System.getProperty("user.dir"); //Get Directory for Files
-            String path = directory + "/" + myF; //Combine Directory and UserInput into one String
+            if(myF != null) {
+                String directory = System.getProperty("user.dir"); //Get Directory for Files
+                String path = directory + "/" + myF; //Combine Directory and UserInput into one String
 
-            try(BufferedReader reader = new BufferedReader(new FileReader(path))){ //Create BufferedReader for loaded file
-                my_board.loadFileCellArray(reader); //Reads the loaded file and updates liveCellArray to match loaded file
-            }catch(IOException e){
-                e.printStackTrace();
+                try (BufferedReader reader = new BufferedReader(new FileReader(path))) { //Create BufferedReader for loaded file
+                    my_board.loadFileCellArray(reader); //Reads the loaded file and updates liveCellArray to match loaded file
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
             slKeyListener.resetKeypressEvent(GLFW_KEY_L);
         } //L Key
         if(slKeyListener.isKeyPressed(GLFW_KEY_S))
         {
+            keepRunning = false; //stop engine so user can see the board they saved
 
             String mySaveFile = JOptionPane.showInputDialog("Enter name for save file"); //Open Box
-            if(!mySaveFile.endsWith(".ca")){ //Ensure .ca is at end of User Inputted File Name
-                mySaveFile = mySaveFile + ".ca";
-            }
-            StringBuilder my_string = new StringBuilder(); //Create Mutable String
+            if(mySaveFile != null && !mySaveFile.isEmpty()) {
+                if (!mySaveFile.endsWith(".ca")) { //Ensure .ca is at end of User Inputted File Name
+                    mySaveFile = mySaveFile + ".ca";
+                }
+                System.out.println("Board Saved! Press SPACE to resume");
+                StringBuilder my_string = new StringBuilder(); //Create Mutable String
 
-            my_string.append(NUM_POLY_ROWS + "\n"); //First Row is Num_Rows
-            my_string.append(NUM_POLY_COLS + "\n"); //Second Row is Num_Cols
-            for(int i = 0; i < NUM_POLY_ROWS; i++) //Loop through boardArray and append string with either 1 or 0
-            {
-                for(int j = 0; j < NUM_POLY_COLS; j++)
+                my_string.append(NUM_POLY_ROWS + "\n"); //First Row is Num_Rows
+                my_string.append(NUM_POLY_COLS + "\n"); //Second Row is Num_Cols
+                int k = 0;
+                for(int i = 0; i < NUM_POLY_COLS*NUM_POLY_ROWS; i++) //Loop through boardMapped and append string with either 1 or 0
                 {
-                    if(boardArray[i][j])
+                    if(boardMapped[i])
                         my_string.append(1);
                     else
                         my_string.append(0);
-                    //my_string.append(" "); //Add whitespace after each char
-                }
-                my_string.append("\n"); //NewLine after each row is finished
-            }
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(mySaveFile))){ //take my_string and write it to the file
-                writer.write(my_string.toString());
-            } catch(IOException e){
-                e.printStackTrace();
-            }
+                    my_string.append(" ");//Add whitespace after each char
+                    k++;
+                    if(k==NUM_POLY_COLS)
+                    {
+                        my_string.append("\n"); //NewLine after each row is finished
+                        k=0;
+                    }
 
+                }
+                //for (int i = 0; i < NUM_POLY_ROWS; i++) //Loop through boardArray and append string with either 1 or 0
+                //{
+                    //for (int j = 0; j < NUM_POLY_COLS; j++) {
+                        //if (boardArray[i][j])
+                            //my_string.append(1);
+                        //else
+                            //my_string.append(0);
+                        //my_string.append(" "); //Add whitespace after each char
+                    //}
+                    //my_string.append("\n"); //NewLine after each row is finished
+                //}
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(mySaveFile))) { //take my_string and write it to the file
+                    writer.write(my_string.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                System.out.println("File Name Required! Press SPACE to resume or Press S to try again");
+            }
             slKeyListener.resetKeypressEvent(GLFW_KEY_S);
         } //S Key
+        if((slKeyListener.isKeyPressed(GLFW_KEY_LEFT_SHIFT) || slKeyListener.isKeyPressed(GLFW_KEY_RIGHT_SHIFT)) && slKeyListener.isKeyPressed(GLFW_KEY_SLASH))
+        {
+            System.out.println("Print this text --> ?" +
+                    "\nToggle 500 ms frame delay --> d" +
+                    "\nToggle frame rate display --> f" +
+                    "\nHalt the engine --> h" +
+                    "\nResume  engine --> SPACE" +
+                    "\nSave engine state to a file --> s" +
+                    "\nLoad engine state from a file --> l" +
+                    "\nrandomize arrays and restart engine --> r" +
+                    "\nExit Program --> ESC");
+            slKeyListener.resetKeypressEvent(GLFW_KEY_SLASH);
+            slKeyListener.resetKeypressEvent(GLFW_KEY_LEFT_SHIFT);
+            slKeyListener.resetKeypressEvent(GLFW_KEY_RIGHT_SHIFT);
+        }
     }
 
     private static void renderObjects() {
@@ -238,12 +280,11 @@ public class slSingleBatchRenderer {
 
         my_board = new slGoLBoardLive(NUM_POLY_ROWS, NUM_POLY_COLS); //Create New Board
         boardArray = my_board.getLiveCellArray(); //2-D Array Points to the liveCellArray inside my_board
-        boolean[] boardMapped = new boolean[NUM_POLY_ROWS * NUM_POLY_COLS]; //1-D copy of boardArray, used to loop through color
+        //boolean[] boardMapped = new boolean[NUM_POLY_ROWS * NUM_POLY_COLS]; //1-D copy of boardArray, used to loop through color
 
         long start_time = System.currentTimeMillis();
 
         while (!glfwWindowShouldClose(glfw_window)) {
-
             //Get framerate:
             long cur_time = System.currentTimeMillis();
             double delta_time = (cur_time - start_time);
@@ -260,22 +301,6 @@ public class slSingleBatchRenderer {
 
             //Toggle Halt Key:
             if(keepRunning) {
-
-                //Map 2-D boardArray to 1-D Array:
-                int k = 0;
-                for (int i = 0; i < NUM_POLY_ROWS; i++) {
-                    for (int j = 0; j < NUM_POLY_COLS; j++) {
-                        if (boardArray[i][j]) {
-                            boardMapped[k] = true;
-                        } else {
-                            boardMapped[k] = false;
-                        }
-                        k++;
-                    }
-                }
-
-                //Update my_board, will also update boardArray:
-                my_board.updateNextCellArray();
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -301,9 +326,21 @@ public class slSingleBatchRenderer {
                         viewProjMatrix.get(myFloatBuffer));
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+                //Map 2-D boardArray to 1-D Array:
+                int k = 0;
+                for (int i = 0; i < NUM_POLY_ROWS; i++) {
+                    for (int j = 0; j < NUM_POLY_COLS; j++) {
+                        if (boardArray[i][j]) {
+                            boardMapped[k] = true;
+                        } else {
+                            boardMapped[k] = false;
+                        }
+                        k++;
+                    }
+                }
+
                 long ibps = 24;
                 int dvps = 6;
-
                 //Draw Each Square Either Red Or Green:
                 for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci) {
                     if (boardMapped[ci]) {
@@ -314,6 +351,14 @@ public class slSingleBatchRenderer {
                     glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
                 }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
 
+                //Update my_board, will also update boardArray:
+                my_board.updateNextCellArray();
+                boardArray = my_board.getLiveCellArray();
+                if(toggleLoad)
+                {
+                    keepRunning = false;
+                    toggleLoad = false;
+                }
                 glfwSwapBuffers(glfw_window);
             }
             //Toggle Delay Key:
